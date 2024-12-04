@@ -1,13 +1,9 @@
-PROYECTO FASE #1
+# PROYECTO FASE #1
 
+## Nombres:
+- Marco Sebastian Solares España  
+- Isai Dardón Mayén  
+- Josué David Porres Gómez  
 
-
-Nombres: 
-*Marco Sebastian Solares Espana 
-*Isai Dardon Mayen
-*Josue David Porres Gomez
-
-
-
-Curso: Compiladores 2
-
+## Curso:
+Compiladores 2
