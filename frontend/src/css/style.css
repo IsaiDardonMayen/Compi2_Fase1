@@ -36,7 +36,10 @@ body {
 
 #editor {
     width: 50%;
-    height: 100%;
+    height: 100%; /* Corregir "00%" a "100%" para que ocupe toda la altura */
+    
+    
+
 }
 
 #salida {
