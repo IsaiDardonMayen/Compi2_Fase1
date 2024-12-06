@@ -1,14 +1,28 @@
-//gramatica para la fase 1 del proyecto compi2
-
 inicio 
-    = _ num:numero _ {
+    = _ num:additive _ {
         return num
     }
+    
+additive
+  = multiplicative "+" additive
+  / multiplicative
 
-numero 
-    = [0-9]+ {return Number(text())}
+multiplicative
+  = primary "*" multiplicative
+  / primary
+
+primary
+  = integer
+  / "(" additive ")"
 
 
+integer
+  = [0-9]+ { return Number(text()); }
+
+Identificador = [a-zA-Z][a-zA-Z0-9]* { return text() }
+
+_ = ([ \t\n\r] / Comments)* 
 
 
-_ = [ \t\n\r]*
+Comments = "//" (![\n] .)*
+            / "/" (!("/") .)* "*/"
