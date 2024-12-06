@@ -1,43 +1,60 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState } from 'react';
 import '../css/style.css';
-export const Home = () => {
-    const handleOpenFile = () => {
-        
-        document.getElementById('fileInput').click('change', (e) => {
-            const file = e.target.files[0];
-            const reader = new FileReader();
-            reader.onload = () => {
-                const text = reader.result;
-                document.getElementById('editor').innerText = text;
-            };
-            reader.readAsText(file);
-        });
-    };
 
-    const handleExecute = () => {
-        console.log('Ejecutar botón presionado');
-        // Lógica para manejar la ejecución
-        const text = document.getElementById('editor').innerText;
-        console.log(text);
+export const Home = () => {
+  const [fileContent, setFileContent] = useState('');
+
+  const handleOpenFile = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      const text = reader.result;
+      setFileContent(text); // Establecer el contenido del archivo en el estado
     };
-    return (
-        
-         <div>
+    reader.readAsText(file);
+  };
+
+  const handleExecute = () => {
+    console.log('Ejecutar botón presionado');
+    // Lógica para manejar la ejecución
+    console.log(fileContent); // Mostrar el contenido del archivo cargado
+  };
+
+  return (
+    <div>
       <header className="header">
-    
-        <button id="Abrir" onClick={handleOpenFile}>
+        <button id="Abrir" onClick={() => document.getElementById('fileInput').click()}>
           Abrir archivo
         </button>
         <button id="Ejecutar" onClick={handleExecute}>
           Ejecutar
         </button>
       </header>
-      <input type="file" id="fileInput" style={{ display: 'none' }} />
+
+      <input 
+        type="file" 
+        id="fileInput" 
+        style={{ display: 'none' }} 
+        onChange={handleOpenFile} // Manejador de evento para cuando el archivo se selecciona
+      />
+
       <main className="container">
-        <div id="editor"></div>
-        <textarea id="salida" readOnly></textarea>
+        {/* Editor ahora es un div desplazable y editable */}
+        <div 
+          id="editor" 
+          contentEditable={true} 
+          className="code-editor"
+        >
+          {fileContent}
+        </div>
+
+        <textarea 
+          id="salida" 
+          readOnly 
+          value={fileContent} // Establece el contenido del archivo en el textarea
+          className="code-output"
+        />
       </main>
     </div>
-      );
-}
+  );
+};

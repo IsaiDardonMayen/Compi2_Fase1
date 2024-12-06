@@ -1,12 +1,15 @@
+/* Estilos generales */
 body {
     margin: 0;
     height: 100%;
     overflow: hidden;
+    font-family: 'Courier New', Courier, monospace; /* Fuente monoespaciada para todo */
+    background-color: #1e1e1e; /* Fondo oscuro para toda la página */
 }
 
+/* Header */
 .header {
     background-color: #1c1a1a;
-    overflow: hidden;
     padding: 10px 5px;
     display: flex;
     justify-content: left;
@@ -23,35 +26,72 @@ body {
     cursor: pointer;
     border-radius: 4px;
     font-size: 15px;
+    transition: background-color 0.3s ease;
 }
 
 .header button:hover {
     background-color: #435644;
 }
 
+/* Contenedor principal */
 .container {
     display: flex;
-    height: calc(100vh - 50px); 
+    height: calc(100vh - 50px); /* Ocupa toda la altura menos la altura del header */
+    overflow: hidden;
 }
 
+/* Editor (entrada de código) */
 #editor {
     width: 50%;
-    height: 100%; /* Corregir "00%" a "100%" para que ocupe toda la altura */
-    
-    
-
+    height: 100%;
+    background-color: #2e2e2e; /* Fondo oscuro para el editor */
+    color: #f8f8f2; /* Texto en color claro */
+    font-family: 'Courier New', Courier, monospace; /* Fuente monoespaciada */
+    font-size: 14px;
+    padding: 20px;
+    white-space: pre-wrap; /* Mantener los saltos de línea */
+    overflow-y: auto; /* Permitir desplazamiento vertical */
+    border-right: 2px solid #393d39; /* Línea divisoria */
+    box-sizing: border-box;
+    border-radius: 4px;
+    line-height: 1.6;
+    outline: none; /* Eliminar el borde del focus */
 }
 
+/* Área de salida de código */
 #salida {
     width: 50%;
     height: 100%;
-    border: 2px solid #000000;
-    font-family: Arial, sans-serif;
+    border-left: 2px solid #393d39; /* Línea divisoria */
+    font-family: 'Courier New', Courier, monospace; /* Fuente monoespaciada */
     font-size: 14px;
-    background-color: #000000;
-    color: #ffffff;
-    resize: none; 
-    overflow-y: auto;
-    padding: 10px;
+    background-color: #1e1e1e; /* Fondo oscuro */
+    color: #f8f8f2; /* Texto claro */
+    resize: none; /* Evitar redimensionar el área */
+    overflow-y: auto; /* Desplazamiento vertical */
+    padding: 20px;
     box-sizing: border-box;
+    border-radius: 4px;
+    outline: none; /* Eliminar borde al hacer focus */
+}
+
+/* Estilos para los botones */
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Estilo para la entrada de archivo */
+input[type="file"] {
+    display: none;
 }
