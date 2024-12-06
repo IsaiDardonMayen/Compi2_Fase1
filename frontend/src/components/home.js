@@ -51,7 +51,7 @@ export const Home = () => {
         <textarea 
           id="salida" 
           readOnly 
-          value={fileContent} // Establece el contenido del archivo en el textarea
+          //value={fileContent} // Establece el contenido del archivo en el textarea
           className="code-output"
         />
       </main>

@@ -1,1 +1,13 @@
-123
+
+cadena ="foo"
+cadena2 ='goo'
+numero = 2*(2+5)
+numero2= 2
+prueba =("prueba")
+texto = ('nada')
+
+// HOLA ESTE ES UN COMENTARIO DE UNA LINEA
+
+/*
+HOLA ESTE ES UN COMENTARIO MULTILINEA
+*/

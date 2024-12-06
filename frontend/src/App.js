@@ -4,6 +4,8 @@ import {Home} from './components/home'; // importamos el componente Home donde s
 
 
 function App() {
+  
+  
   return (
     <Router>
       <Routes>
