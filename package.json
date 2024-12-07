@@ -24,7 +24,9 @@
     "check:watch": "eslint src --watch && tsc --noEmit --watch",
     "compile": "peggy --format es -o src/lib/parser/peg-parser.js grammar/grammar.pegjs",
     "serve": "serve -s build",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "test": "react-scripts test"
+
   },
   "eslintConfig": {
     "extends": [
