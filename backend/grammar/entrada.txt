@@ -1,17 +1,35 @@
+start = proGram;
 
-cadena ="foo"
-cadena2 ='goo'
-numero = 2*(2+5)
-numero2= 2
-prueba =("prueba")
-texto = ('nada')
+program = statement*;
 
+statement = assignment / expression_statement / if_statement / function_definition ;
 
+assignment = variable "=" expression;
 
-x = [a-c]
-z = [abc]
-// HOLA ESTE ES UN COMENTARIO DE UNA LINEA
+Expression_Statement = expression;
 
-/*
-HOLA ESTE ES UN COMENTARIO MULTILINEA
-*/
+if_statement = "if" "(" expression ")" block ("else" block)?;
+
+function_DEFINITION = "function" variable "(" parameters? ")" block;
+
+PARAMETERS = parameter (",")*;
+
+parameter= variable;
+
+block = "{" statement* "}";
+
+expression = additive / function_call / variable / integer;
+
+additive = multiplicative ("+" multiplicative)* / multiplicative ("-" multiplicative)*;
+
+multiplicative = primary ("*" primary)*/ primary ("/" primary)*;
+
+primary = integer/ variable/ function_call/ "(" expression ")";
+
+function_call = variable "(" arguments? ")";
+
+arguments = expression ("," expression)*;
+
+variable = [a-zA-Z_][a-zA-Z0-9_]*;
+
+inTeGer = [0-9]+;
