@@ -7,3 +7,7 @@
 
 ## Curso:
 Compiladores 2
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LINCESE) file for details.
