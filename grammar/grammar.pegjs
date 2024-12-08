@@ -1,8 +1,8 @@
 inicio
-  = regla (newl regla)*
+  =  regla newl (newl regla newl)*
 
 regla
-  = name _ "=" _ elegir _ ";"
+  =  name _ "=" _ elegir _ ";"
   
 elegir
   = concatenation (newl "/" newl concatenation)*
