@@ -15,8 +15,8 @@ expression
   / group newl[?+*]?
   
 group
-  = "(" _ inner:expression _ ")" 
-   / "(" _ inner:expression _ expression ")"
+  = "(" _ inner:elegir _ ")"  // Alternativas completas dentro de paréntesis
+  / "(" _ inner:concatenation _ ")"  // Concatenaciones completas
   
 parsingExpression
   = name
