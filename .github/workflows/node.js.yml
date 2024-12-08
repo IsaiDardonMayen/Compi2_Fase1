@@ -5,7 +5,7 @@ on:
     branches: 'main'
 
 jobs:
-  build_site:
+  compilar_sitio_web:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -24,19 +24,18 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: build
+      - name: Build
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
-        run: |
-          npm run build
+        run: npm run build
 
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'Compi2_Fase1/build/'
+          path: ./Compi2_Fase1/build/
 
-  deploy:
-    needs: build_site
+  subir_a_github_pages:
+    needs: compilar_sitio_web
     runs-on: ubuntu-latest
 
     permissions:
