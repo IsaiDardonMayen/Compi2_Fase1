@@ -7,7 +7,7 @@ function App() {
   
   
   return (
-    <Router>
+    <Router  basename="/Compi2_Fase1">
       <Routes>
         
         <Route path="/" element={<Home />} />
