@@ -16,7 +16,7 @@ export const Home = () => {
     };
     reader.readAsText(file);
   };
-//ss
+//sss
   const handleExecute = () => {
     const editorContent = editorRef.current.innerText; // Capturar el texto del editor
     console.log('Texto del editor:', editorContent);
