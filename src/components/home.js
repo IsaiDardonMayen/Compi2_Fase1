@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react'
 import '../css/style.css';
+import * as Parser from '../lib/parser/peg-parser'; // Importar el parser generado por Peggy.js
 
 export const Home = () => {
   const [fileContent, setFileContent] = useState('');
+  const [parsedOutput, setParsedOutput] = useState('');
+  const editorRef = useRef(null); // Referencia al editor
 
   const handleOpenFile = (e) => {
     const file = e.target.files[0];
@@ -15,9 +18,16 @@ export const Home = () => {
   };
 
   const handleExecute = () => {
-    console.log('Ejecutar botón presionado');
-    // Lógica para manejar la ejecución
-    console.log(fileContent); // Mostrar el contenido del archivo cargado
+    const editorContent = editorRef.current.innerText; // Capturar el texto del editor
+    console.log('Texto del editor:', editorContent);
+
+    try {
+      const parsedResult = Parser.parse(editorContent); // Parsear el texto usando Peggy.js
+      setParsedOutput("No hay ningun error Lexico O Semantico!:)"); // Guardar el resultado parseado
+    } catch (error) {
+      console.error('Error al parsear:', error);
+      setParsedOutput(`Error al parsear: ${error.message}`);
+    }
   };
 
   return (
@@ -44,6 +54,7 @@ export const Home = () => {
           id="editor" 
           contentEditable={true} 
           className="code-editor"
+          ref={editorRef} // Asignación de referencia
         >
           {fileContent}
         </div>
@@ -51,7 +62,7 @@ export const Home = () => {
         <textarea 
           id="salida" 
           readOnly 
-          //value={fileContent} // Establece el contenido del archivo en el textarea
+          value={parsedOutput} // Mostrar el resultado del parsing
           className="code-output"
         />
       </main>
