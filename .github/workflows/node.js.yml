@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./Compi2_Fase1
+        working-directory: .
     steps:
       - name: Checkout
         uses: actions/checkout@v4
