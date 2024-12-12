@@ -94,4 +94,4 @@ newl "nueva linea"
 
 Comments
   = "//" (![\n] .)*  // Comentarios de una línea
-  / "/" (!"/" .)* "*/" // Comentarios multilínea
+  / "/*" (!"*/" .)* "*/" // Comentarios multilínea
