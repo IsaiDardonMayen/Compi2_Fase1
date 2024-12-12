@@ -21,6 +21,7 @@ etiqueta
 
 expression
   = "$"? _ parsingExpression _ quanti?
+  /group
   / group newl[?+*]?
   / insensitiveString
   / positiveAssertion    // Se permite la afirmación positiva (&)
