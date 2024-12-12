@@ -669,21 +669,23 @@ function peg$parse(input, options) {
   }
 
   function peg$parseetiqueta() {
-    var s0, s1, s2, s3;
+    var s0, s1, s2, s3, s4, s5;
 
     s0 = peg$currPos;
     s1 = peg$currPos;
     s2 = peg$parsename();
     if (s2 !== peg$FAILED) {
+      s3 = peg$parse_();
       if (input.charCodeAt(peg$currPos) === 58) {
-        s3 = peg$c5;
+        s4 = peg$c5;
         peg$currPos++;
       } else {
-        s3 = peg$FAILED;
+        s4 = peg$FAILED;
         if (peg$silentFails === 0) { peg$fail(peg$e5); }
       }
-      if (s3 !== peg$FAILED) {
-        s2 = [s2, s3];
+      if (s4 !== peg$FAILED) {
+        s5 = peg$parse_();
+        s2 = [s2, s3, s4, s5];
         s1 = s2;
       } else {
         peg$currPos = s1;
