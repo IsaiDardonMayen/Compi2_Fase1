@@ -1,14 +1,20 @@
 inicio
-  = regla newl (newl regla newl)*
+  = regla+ newl
 
 regla
-  = name _ "=" _ elegir _ ";"
+  = newl name newl "=" _ elegir newl (_";"_)?
 
 elegir
   = concatenation (newl "/" newl concatenation)*
 
 concatenation
-	= expression (_ expression)*
+	= plck (_ plck)*
+
+plck
+  = "@"? etiqueta
+
+etiqueta
+  = (name ":")? expression
 
 repeticion
   = expression repetitionQuantifier?
@@ -21,7 +27,7 @@ delimitador "delimitador"
   = parsingExpression { return { type: "delimiter" }; }
 
 expression
-  = parsingExpression newl[?+*]?
+  = parsingExpression [?+*]?
   / group newl[?+*]?
   / insensitiveString
 
@@ -66,4 +72,4 @@ newl "nueva linea"
 
 Comments
   = "//" (![\n] .)*  // Comentarios de una línea
-  / "/" (!"/" .)* "*/"  // Comentarios multilínea
+  / "/*" (!"*/" .)* "*/" // Comentarios multilínea
