@@ -2,7 +2,7 @@ inicio
   = regla+ newl
 
 regla
-  = newl name newl "=" _ elegir newl (";")?  // Asigna la expresión con & o !
+  = newl name newl (string)? newl "=" _ elegir newl (";")?  // Asigna la expresión con & o !
 
 elegir
   = concatenation (newl "/" newl concatenation)*
@@ -11,20 +11,27 @@ concatenation
   = plck (_ plck)*
 
 plck
-
-  = "@"? etiqueta
-  / positiveAssertion   // Se permite una afirmación positiva (&)
-  / negativeAssertion   // Se permite una afirmación negativa (!)
+  = "$"? _ etiqueta _ quanti?  // Soporte para $ y cuantificadores
+  / "@"? etiqueta
+  / positiveAssertion
+  / negativeAssertion
 
 etiqueta
   = (name ":")? expression
 
 expression
-  = parsingExpression [?+*]?
+  = "$"? _ parsingExpression _ quanti?
   / group newl[?+*]?
   / insensitiveString
   / positiveAssertion    // Se permite la afirmación positiva (&)
   / negativeAssertion    // Se permite la afirmación negativa (!)
+
+quanti
+  = [?+*]
+  / "|" _ (integer / name)? _ ".." _ (integer / name)? _ ","? _ elegir? _ "|"
+  / "|" _ (integer / name)? _ "," _ elegir _ "|"
+  / "|" _ (integer / name) _ "|"
+
 
 positiveAssertion
   = "&" _ expr:expression {
@@ -88,4 +95,3 @@ newl "nueva linea"
 Comments
   = "//" (![\n] .)*  // Comentarios de una línea
   / "/" (!"/" .)* "*/" // Comentarios multilínea
-  // prueba
