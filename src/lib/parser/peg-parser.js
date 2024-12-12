@@ -739,32 +739,35 @@ function peg$parse(input, options) {
       s0 = peg$FAILED;
     }
     if (s0 === peg$FAILED) {
-      s0 = peg$currPos;
-      s1 = peg$parsegroup();
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parsenewl();
-        s3 = input.charAt(peg$currPos);
-        if (peg$r0.test(s3)) {
-          peg$currPos++;
-        } else {
-          s3 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$e6); }
-        }
-        if (s3 === peg$FAILED) {
-          s3 = null;
-        }
-        s1 = [s1, s2, s3];
-        s0 = s1;
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
+      s0 = peg$parsegroup();
       if (s0 === peg$FAILED) {
-        s0 = peg$parseinsensitiveString();
+        s0 = peg$currPos;
+        s1 = peg$parsegroup();
+        if (s1 !== peg$FAILED) {
+          s2 = peg$parsenewl();
+          s3 = input.charAt(peg$currPos);
+          if (peg$r0.test(s3)) {
+            peg$currPos++;
+          } else {
+            s3 = peg$FAILED;
+            if (peg$silentFails === 0) { peg$fail(peg$e6); }
+          }
+          if (s3 === peg$FAILED) {
+            s3 = null;
+          }
+          s1 = [s1, s2, s3];
+          s0 = s1;
+        } else {
+          peg$currPos = s0;
+          s0 = peg$FAILED;
+        }
         if (s0 === peg$FAILED) {
-          s0 = peg$parsepositiveAssertion();
+          s0 = peg$parseinsensitiveString();
           if (s0 === peg$FAILED) {
-            s0 = peg$parsenegativeAssertion();
+            s0 = peg$parsepositiveAssertion();
+            if (s0 === peg$FAILED) {
+              s0 = peg$parsenegativeAssertion();
+            }
           }
         }
       }
