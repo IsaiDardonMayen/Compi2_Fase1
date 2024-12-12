@@ -11,6 +11,7 @@ concatenation
   = plck (_ plck)*
 
 plck
+
   = "@"? etiqueta
   / positiveAssertion   // Se permite una afirmación positiva (&)
   / negativeAssertion   // Se permite una afirmación negativa (!)
