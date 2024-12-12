@@ -17,7 +17,7 @@ plck
   / negativeAssertion
 
 etiqueta
-  = (name ":")? expression
+  = (name _ ":"_ )? expression 
 
 expression
   = "$"? _ parsingExpression _ quanti?
