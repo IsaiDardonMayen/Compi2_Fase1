@@ -2,19 +2,38 @@ inicio
   = regla+ newl
 
 regla
-  = newl name newl "=" _ elegir newl (_";"_)?
+  = newl name newl "=" _ elegir newl (";")?  // Asigna la expresión con & o !
 
 elegir
   = concatenation (newl "/" newl concatenation)*
 
 concatenation
-	= plck (_ plck)*
+  = plck (_ plck)*
 
 plck
   = "@"? etiqueta
+  / positiveAssertion   // Se permite una afirmación positiva (&)
+  / negativeAssertion   // Se permite una afirmación negativa (!)
 
 etiqueta
   = (name ":")? expression
+
+expression
+  = parsingExpression [?+*]?
+  / group newl[?+*]?
+  / insensitiveString
+  / positiveAssertion    // Se permite la afirmación positiva (&)
+  / negativeAssertion    // Se permite la afirmación negativa (!)
+
+positiveAssertion
+  = "&" _ expr:expression {
+      return { type: 'positiveAssertion', expr };
+    }
+
+negativeAssertion
+  = "!" _ expr:expression {
+    return { type: 'negativeAssertion', expr };
+  }
 
 repeticion
   = expression repetitionQuantifier?
@@ -25,11 +44,6 @@ repetitionQuantifier
 
 delimitador "delimitador"
   = parsingExpression { return { type: "delimiter" }; }
-
-expression
-  = parsingExpression [?+*]?
-  / group newl[?+*]?
-  / insensitiveString
 
 insensitiveString
   = string insensitive:"i"?
@@ -72,4 +86,4 @@ newl "nueva linea"
 
 Comments
   = "//" (![\n] .)*  // Comentarios de una línea
-  / "/*" (!"*/" .)* "*/" // Comentarios multilínea
+  / "/" (!"/" .)* "*/" // Comentarios multilínea
